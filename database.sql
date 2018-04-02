@@ -30,7 +30,7 @@ CREATE TABLE `actors` (
   `brithday` date DEFAULT NULL,
   `deathday` date DEFAULT NULL,
   PRIMARY KEY (`actorID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `actors` (
 
 LOCK TABLES `actors` WRITE;
 /*!40000 ALTER TABLE `actors` DISABLE KEYS */;
+INSERT INTO `actors` VALUES (1,'Keanu Reeves','1964-09-02',NULL),(2,'Laurence Fishburne','1961-07-30',NULL),(3,'Carrie-Anne Moss','1967-08-21',NULL),(4,'Hugo Weaving','1960-04-04',NULL),(5,'Joe Pantoliano','1951-09-12',NULL),(6,'Tom Skerritt','1933-08-25',NULL),(7,'Sigourney Weaver','1949-10-08',NULL),(8,'Veronica Cartwright','1949-04-20',NULL),(9,'Harry Dean Stanton','1926-07-14','2017-09-15'),(10,'John Hurt','1940-01-22','2017-01-25'),(11,'Ian Holm','1931-09-12',NULL),(12,'Yaphet Kotto','1939-11-15',NULL);
 /*!40000 ALTER TABLE `actors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +81,7 @@ CREATE TABLE `awards` (
   `awardID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   PRIMARY KEY (`awardID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,6 +90,7 @@ CREATE TABLE `awards` (
 
 LOCK TABLES `awards` WRITE;
 /*!40000 ALTER TABLE `awards` DISABLE KEYS */;
+INSERT INTO `awards` VALUES (1,'Oscars'),(2,'BAFTA'),(3,'Saturn'),(4,'Hugo');
 /*!40000 ALTER TABLE `awards` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,7 +108,7 @@ CREATE TABLE `copies` (
   PRIMARY KEY (`copyID`),
   KEY `fk_copies_movies1_idx` (`movieID`),
   CONSTRAINT `fk_copies_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,6 +117,7 @@ CREATE TABLE `copies` (
 
 LOCK TABLES `copies` WRITE;
 /*!40000 ALTER TABLE `copies` DISABLE KEYS */;
+INSERT INTO `copies` VALUES (1,1,'BLU-RAY'),(2,1,'BLU-RAY'),(3,1,'BLU-RAY'),(4,1,'DVD'),(5,1,'DVD'),(6,2,'BLU-RAY'),(7,2,'BLU-RAY'),(8,2,'DVD'),(9,2,'DVD');
 /*!40000 ALTER TABLE `copies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +132,7 @@ CREATE TABLE `countries` (
   `countryID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   PRIMARY KEY (`countryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,6 +141,7 @@ CREATE TABLE `countries` (
 
 LOCK TABLES `countries` WRITE;
 /*!40000 ALTER TABLE `countries` DISABLE KEYS */;
+INSERT INTO `countries` VALUES (1,'Sweden'),(2,'United States of America'),(3,'United Kingdom');
 /*!40000 ALTER TABLE `countries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +189,7 @@ CREATE TABLE `directors` (
   `birthday` date DEFAULT NULL,
   `deathday` date DEFAULT NULL,
   PRIMARY KEY (`directorID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,6 +198,7 @@ CREATE TABLE `directors` (
 
 LOCK TABLES `directors` WRITE;
 /*!40000 ALTER TABLE `directors` DISABLE KEYS */;
+INSERT INTO `directors` VALUES (1,'Lana Wachowski','1965-06-21',NULL),(2,'Lilly Wachowski','1967-12-29',NULL),(3,'Ridley Scott','1937-11-30',NULL);
 /*!40000 ALTER TABLE `directors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,7 +242,7 @@ CREATE TABLE `genres` (
   `genreID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   PRIMARY KEY (`genreID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,6 +251,7 @@ CREATE TABLE `genres` (
 
 LOCK TABLES `genres` WRITE;
 /*!40000 ALTER TABLE `genres` DISABLE KEYS */;
+INSERT INTO `genres` VALUES (1,'Action'),(2,'Science Fiction'),(3,'Adventure'),(4,'Fantasy'),(5,'Horror');
 /*!40000 ALTER TABLE `genres` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,7 +268,7 @@ CREATE TABLE `movies` (
   `length` int(11) DEFAULT NULL,
   `releaseDate` date DEFAULT NULL,
   PRIMARY KEY (`movieID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,6 +277,7 @@ CREATE TABLE `movies` (
 
 LOCK TABLES `movies` WRITE;
 /*!40000 ALTER TABLE `movies` DISABLE KEYS */;
+INSERT INTO `movies` VALUES (1,'The Matrix',136,'1999-03-31'),(2,'Alien',117,'1979-05-25');
 /*!40000 ALTER TABLE `movies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,6 +305,7 @@ CREATE TABLE `movies_has_actors` (
 
 LOCK TABLES `movies_has_actors` WRITE;
 /*!40000 ALTER TABLE `movies_has_actors` DISABLE KEYS */;
+INSERT INTO `movies_has_actors` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(2,6),(2,7),(2,8),(2,9),(2,10),(2,11),(2,12);
 /*!40000 ALTER TABLE `movies_has_actors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -325,6 +333,7 @@ CREATE TABLE `movies_has_awards` (
 
 LOCK TABLES `movies_has_awards` WRITE;
 /*!40000 ALTER TABLE `movies_has_awards` DISABLE KEYS */;
+INSERT INTO `movies_has_awards` VALUES (1,1),(2,1),(1,2),(1,3),(2,3),(2,4);
 /*!40000 ALTER TABLE `movies_has_awards` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -336,13 +345,13 @@ DROP TABLE IF EXISTS `movies_has_countries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `movies_has_countries` (
-  `movies_movieID` int(11) NOT NULL,
-  `countries_countryID` int(11) NOT NULL,
-  PRIMARY KEY (`movies_movieID`,`countries_countryID`),
-  KEY `fk_movies_has_countries_countries1_idx` (`countries_countryID`),
-  KEY `fk_movies_has_countries_movies1_idx` (`movies_movieID`),
-  CONSTRAINT `fk_movies_has_countries_countries1` FOREIGN KEY (`countries_countryID`) REFERENCES `countries` (`countryID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_movies_has_countries_movies1` FOREIGN KEY (`movies_movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `movieID` int(11) NOT NULL,
+  `countryID` int(11) NOT NULL,
+  PRIMARY KEY (`movieID`,`countryID`),
+  KEY `fk_movies_has_countries_countries1_idx` (`countryID`),
+  KEY `fk_movies_has_countries_movies1_idx` (`movieID`),
+  CONSTRAINT `fk_movies_has_countries_countries1` FOREIGN KEY (`countryID`) REFERENCES `countries` (`countryID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movies_has_countries_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -352,6 +361,7 @@ CREATE TABLE `movies_has_countries` (
 
 LOCK TABLES `movies_has_countries` WRITE;
 /*!40000 ALTER TABLE `movies_has_countries` DISABLE KEYS */;
+INSERT INTO `movies_has_countries` VALUES (1,2),(2,2),(2,3);
 /*!40000 ALTER TABLE `movies_has_countries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -379,6 +389,7 @@ CREATE TABLE `movies_has_directors` (
 
 LOCK TABLES `movies_has_directors` WRITE;
 /*!40000 ALTER TABLE `movies_has_directors` DISABLE KEYS */;
+INSERT INTO `movies_has_directors` VALUES (1,1),(1,2),(2,3);
 /*!40000 ALTER TABLE `movies_has_directors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -406,6 +417,7 @@ CREATE TABLE `movies_has_genres` (
 
 LOCK TABLES `movies_has_genres` WRITE;
 /*!40000 ALTER TABLE `movies_has_genres` DISABLE KEYS */;
+INSERT INTO `movies_has_genres` VALUES (1,1),(1,2),(2,2),(1,3),(2,3),(1,4),(2,4),(2,5);
 /*!40000 ALTER TABLE `movies_has_genres` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -423,7 +435,8 @@ CREATE TABLE `rented` (
   `employeeID` int(11) NOT NULL,
   `rentDate` date DEFAULT NULL,
   `dueDate` date DEFAULT NULL,
-  `comment` enum('LATE','ON TIME') COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `returnedDate` date DEFAULT NULL,
+  `status` enum('RENTED','ON TIME','LATE','RETURNED LATE') COLLATE utf8mb4_swedish_ci DEFAULT 'RENTED',
   PRIMARY KEY (`rentingID`),
   KEY `fk_rented_copies1_idx` (`copyID`),
   KEY `fk_rented_customers1_idx` (`customerID`),
@@ -489,4 +502,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-02 15:30:26
+-- Dump completed on 2018-04-02 17:05:09
