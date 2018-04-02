@@ -1,317 +1,492 @@
--- MySQL Workbench Forward Engineering
+CREATE DATABASE  IF NOT EXISTS `pontusl` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_swedish_ci */;
+USE `pontusl`;
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: pontusl
+-- ------------------------------------------------------
+-- Server version	5.7.21-log
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- -----------------------------------------------------
--- Schema PontusL
--- -----------------------------------------------------
+--
+-- Table structure for table `actors`
+--
 
--- -----------------------------------------------------
--- Schema PontusL
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `PontusL` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_swedish_ci ;
-USE `PontusL` ;
+DROP TABLE IF EXISTS `actors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `actors` (
+  `actorID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `brithday` date DEFAULT NULL,
+  `deathday` date DEFAULT NULL,
+  PRIMARY KEY (`actorID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- -----------------------------------------------------
--- Table `PontusL`.`addresses`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`addresses` (
-  `addressID` INT NOT NULL AUTO_INCREMENT,
-  `streetAddress` VARCHAR(45) NULL,
-  `postalCode` VARCHAR(45) NULL,
-  `city` VARCHAR(45) NULL,
-  `country` VARCHAR(45) NULL,
-  PRIMARY KEY (`addressID`))
-ENGINE = InnoDB;
+--
+-- Dumping data for table `actors`
+--
 
+LOCK TABLES `actors` WRITE;
+/*!40000 ALTER TABLE `actors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `actors` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- -----------------------------------------------------
--- Table `PontusL`.`customers`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`customers` (
-  `customerID` INT NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(45) NULL,
-  `lastName` VARCHAR(45) NULL,
-  `birthday` DATE NULL,
-  `email` VARCHAR(45) NULL,
-  `phone` VARCHAR(45) NULL,
-  `addressID` INT NOT NULL,
-  PRIMARY KEY (`customerID`),
-  INDEX `fk_customers_addresses1_idx` (`addressID` ASC),
-  CONSTRAINT `fk_customers_addresses1`
-    FOREIGN KEY (`addressID`)
-    REFERENCES `PontusL`.`addresses` (`addressID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Table structure for table `addresses`
+--
 
+DROP TABLE IF EXISTS `addresses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `addresses` (
+  `addressID` int(11) NOT NULL AUTO_INCREMENT,
+  `streetAddress` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `postalCode` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `city` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `country` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  PRIMARY KEY (`addressID`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- -----------------------------------------------------
--- Table `PontusL`.`employees`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`employees` (
-  `employeeID` INT NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(45) NULL,
-  `lastName` VARCHAR(45) NULL,
-  `phone` VARCHAR(45) NULL,
-  `addressID` INT NOT NULL,
-  PRIMARY KEY (`employeeID`),
-  INDEX `fk_employees_addresses1_idx` (`addressID` ASC),
-  CONSTRAINT `fk_employees_addresses1`
-    FOREIGN KEY (`addressID`)
-    REFERENCES `PontusL`.`addresses` (`addressID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Dumping data for table `addresses`
+--
 
+LOCK TABLES `addresses` WRITE;
+/*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
+INSERT INTO `addresses` VALUES (1,'Luddingsbo Mekanikusv 87','114 49','Stockholm','Sweden'),(2,'Anders Sadelmakares Gränd 70','271 51','Ystad','Sweden'),(3,'Ängsgatan 96','115 91','Stockholm','Sweden'),(4,'Östbygatan 70','232 24','Arlöv','Sweden'),(5,'Nöjesgatan 79','548 32','Hova','Sweden'),(6,'Ellenö 33','673 31','Charlottenberg','Sweden'),(7,'Klövervägen 83','523 38','Ulricehamn','Sweden'),(8,'Pølsesvingen 50','1101','Oslo','Norway'),(9,'Skällebo 47','181 85','Lidingö','Sweden'),(10,'Kanslerinrinne 11','27260','Lappi','Finland'),(11,'Bottna Knutsgård 48','961 86','Boden','Sweden'),(12,'Edeforsvägen 84','129 55','Hägersten','Sweden'),(13,'Nedre Bergslia 122','9510','Alta','Norway'),(14,'Skärpinge 88','164 91','Kista','Sweden'),(15,'Albanivej 29','1058','København','Denmark'),(16,'Larsokveien 230','1291','Oslo','Norway'),(17,'Langvollen 107','3798','Skien','Norway'),(18,'Lidbovägen 69','116 45','Stockholm','Sweden'),(19,'Trädgårdsgatan 20','614 31','Söderköping','Sweden'),(20,'Vipgränden 69','573 36','Tranås','Sweden');
+/*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- -----------------------------------------------------
--- Table `PontusL`.`salaries`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`salaries` (
-  `salaryID` INT NOT NULL AUTO_INCREMENT,
-  `employeeID` INT NOT NULL,
-  `amount` DOUBLE NULL,
-  `startDate` DATE NULL,
-  `endDate` DATE NULL,
-  PRIMARY KEY (`salaryID`),
-  INDEX `fk_salaries_employees1_idx` (`employeeID` ASC),
-  CONSTRAINT `fk_salaries_employees1`
-    FOREIGN KEY (`employeeID`)
-    REFERENCES `PontusL`.`employees` (`employeeID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Table structure for table `awards`
+--
 
+DROP TABLE IF EXISTS `awards`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `awards` (
+  `awardID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  PRIMARY KEY (`awardID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- -----------------------------------------------------
--- Table `PontusL`.`movies`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`movies` (
-  `movieID` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(45) NULL,
-  `length` INT NULL,
-  `releaseDate` DATE NULL,
-  PRIMARY KEY (`movieID`))
-ENGINE = InnoDB;
+--
+-- Dumping data for table `awards`
+--
 
+LOCK TABLES `awards` WRITE;
+/*!40000 ALTER TABLE `awards` DISABLE KEYS */;
+/*!40000 ALTER TABLE `awards` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- -----------------------------------------------------
--- Table `PontusL`.`copies`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`copies` (
-  `copyID` INT NOT NULL AUTO_INCREMENT,
-  `movieID` INT NOT NULL,
-  `format` ENUM('BLU-RAY', 'DVD') NULL,
+--
+-- Table structure for table `copies`
+--
+
+DROP TABLE IF EXISTS `copies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `copies` (
+  `copyID` int(11) NOT NULL AUTO_INCREMENT,
+  `movieID` int(11) NOT NULL,
+  `format` enum('BLU-RAY','DVD') COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   PRIMARY KEY (`copyID`),
-  INDEX `fk_copies_movies1_idx` (`movieID` ASC),
-  CONSTRAINT `fk_copies_movies1`
-    FOREIGN KEY (`movieID`)
-    REFERENCES `PontusL`.`movies` (`movieID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  KEY `fk_copies_movies1_idx` (`movieID`),
+  CONSTRAINT `fk_copies_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `copies`
+--
 
--- -----------------------------------------------------
--- Table `PontusL`.`directors`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`directors` (
-  `directorID` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `birthday` DATE NULL,
-  `deathday` DATE NULL,
-  PRIMARY KEY (`directorID`))
-ENGINE = InnoDB;
+LOCK TABLES `copies` WRITE;
+/*!40000 ALTER TABLE `copies` DISABLE KEYS */;
+/*!40000 ALTER TABLE `copies` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `countries`
+--
 
--- -----------------------------------------------------
--- Table `PontusL`.`rented`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`rented` (
-  `rentingID` INT NOT NULL AUTO_INCREMENT,
-  `copyID` INT NOT NULL,
-  `customerID` INT NOT NULL,
-  `employeeID` INT NOT NULL,
-  `rentDate` DATE NULL,
-  `dueDate` DATE NULL,
-  `comment` ENUM('LATE', 'ON TIME') NULL,
+DROP TABLE IF EXISTS `countries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `countries` (
+  `countryID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  PRIMARY KEY (`countryID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `countries`
+--
+
+LOCK TABLES `countries` WRITE;
+/*!40000 ALTER TABLE `countries` DISABLE KEYS */;
+/*!40000 ALTER TABLE `countries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customers`
+--
+
+DROP TABLE IF EXISTS `customers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customers` (
+  `customerID` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `lastName` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `email` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `phone` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `addressID` int(11) NOT NULL,
+  PRIMARY KEY (`customerID`),
+  KEY `fk_customers_addresses1_idx` (`addressID`),
+  CONSTRAINT `fk_customers_addresses1` FOREIGN KEY (`addressID`) REFERENCES `addresses` (`addressID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customers`
+--
+
+LOCK TABLES `customers` WRITE;
+/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+INSERT INTO `customers` VALUES (1,'Linus','Ohlander','1991-01-28','linus.ohlander@hotmail.se','0739334623',5),(2,'Hanna','Karlsson','1964-03-29','hanna.karlsson@gmail.com','0739443546',12),(3,'Victor','Vallstrand','1983-04-24','victor.vallstrand@telia.se','0739493696',10),(4,'Anna','Olsson','1973-03-16','anna.olsson@hotmail.com','0735669577',19),(5,'Vera','Kortberg','1962-06-21','vera.kortberg@test.com','0739294787',17),(6,'Patrik','Rodriguez','1985-10-08','patrik.rodriguez@test.com','0707543608',4),(7,'Lars','Andersson','1975-06-22','lars.andersson@telia.com','0707439788',11),(8,'Sara','Blom','1999-12-14','sara.blom@icloud.com','0707670753',8),(9,'Bengt','Sjöstedt','1984-09-06','bengt.sjostedt@hotmail.com','0707395996',13),(10,'Juan','Uggla','1992-02-22','juan.uggla@hotmail.se','0735634313',15);
+/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `directors`
+--
+
+DROP TABLE IF EXISTS `directors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `directors` (
+  `directorID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `deathday` date DEFAULT NULL,
+  PRIMARY KEY (`directorID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `directors`
+--
+
+LOCK TABLES `directors` WRITE;
+/*!40000 ALTER TABLE `directors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `directors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employees`
+--
+
+DROP TABLE IF EXISTS `employees`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `employees` (
+  `employeeID` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `lastName` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `phone` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `addressID` int(11) NOT NULL,
+  PRIMARY KEY (`employeeID`),
+  KEY `fk_employees_addresses1_idx` (`addressID`),
+  CONSTRAINT `fk_employees_addresses1` FOREIGN KEY (`addressID`) REFERENCES `addresses` (`addressID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employees`
+--
+
+LOCK TABLES `employees` WRITE;
+/*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` VALUES (1,'Max','Power','0707176130',1),(2,'Filippa','Svensson','0735457944',16),(3,'Hanna','Åstromme','0739451595',6),(4,'Rikard','Ibrahimovic','0707742047',20),(5,'Henrik','Ohlander','0707801550',3),(6,'Petra','Svensson','0707111465',7),(7,'Mimmi','Karlsson','0707585431',9),(8,'Luke','Eriksson','0739672605',2),(9,'Johanna','Ohlander','0707397726',14),(10,'Sara','Peng','0707147391',18);
+/*!40000 ALTER TABLE `employees` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `genres`
+--
+
+DROP TABLE IF EXISTS `genres`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `genres` (
+  `genreID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  PRIMARY KEY (`genreID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `genres`
+--
+
+LOCK TABLES `genres` WRITE;
+/*!40000 ALTER TABLE `genres` DISABLE KEYS */;
+/*!40000 ALTER TABLE `genres` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `movies`
+--
+
+DROP TABLE IF EXISTS `movies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movies` (
+  `movieID` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `length` int(11) DEFAULT NULL,
+  `releaseDate` date DEFAULT NULL,
+  PRIMARY KEY (`movieID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movies`
+--
+
+LOCK TABLES `movies` WRITE;
+/*!40000 ALTER TABLE `movies` DISABLE KEYS */;
+/*!40000 ALTER TABLE `movies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `movies_has_actors`
+--
+
+DROP TABLE IF EXISTS `movies_has_actors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movies_has_actors` (
+  `movieID` int(11) NOT NULL,
+  `actorID` int(11) NOT NULL,
+  PRIMARY KEY (`movieID`,`actorID`),
+  KEY `fk_movies_has_actors_actors1_idx` (`actorID`),
+  KEY `fk_movies_has_actors_movies1_idx` (`movieID`),
+  CONSTRAINT `fk_movies_has_actors_actors1` FOREIGN KEY (`actorID`) REFERENCES `actors` (`actorID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movies_has_actors_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movies_has_actors`
+--
+
+LOCK TABLES `movies_has_actors` WRITE;
+/*!40000 ALTER TABLE `movies_has_actors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `movies_has_actors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `movies_has_awards`
+--
+
+DROP TABLE IF EXISTS `movies_has_awards`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movies_has_awards` (
+  `movieID` int(11) NOT NULL,
+  `awardID` int(11) NOT NULL,
+  PRIMARY KEY (`movieID`,`awardID`),
+  KEY `fk_movies_has_awards_awards1_idx` (`awardID`),
+  KEY `fk_movies_has_awards_movies1_idx` (`movieID`),
+  CONSTRAINT `fk_movies_has_awards_awards1` FOREIGN KEY (`awardID`) REFERENCES `awards` (`awardID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movies_has_awards_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movies_has_awards`
+--
+
+LOCK TABLES `movies_has_awards` WRITE;
+/*!40000 ALTER TABLE `movies_has_awards` DISABLE KEYS */;
+/*!40000 ALTER TABLE `movies_has_awards` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `movies_has_countries`
+--
+
+DROP TABLE IF EXISTS `movies_has_countries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movies_has_countries` (
+  `movies_movieID` int(11) NOT NULL,
+  `countries_countryID` int(11) NOT NULL,
+  PRIMARY KEY (`movies_movieID`,`countries_countryID`),
+  KEY `fk_movies_has_countries_countries1_idx` (`countries_countryID`),
+  KEY `fk_movies_has_countries_movies1_idx` (`movies_movieID`),
+  CONSTRAINT `fk_movies_has_countries_countries1` FOREIGN KEY (`countries_countryID`) REFERENCES `countries` (`countryID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movies_has_countries_movies1` FOREIGN KEY (`movies_movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movies_has_countries`
+--
+
+LOCK TABLES `movies_has_countries` WRITE;
+/*!40000 ALTER TABLE `movies_has_countries` DISABLE KEYS */;
+/*!40000 ALTER TABLE `movies_has_countries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `movies_has_directors`
+--
+
+DROP TABLE IF EXISTS `movies_has_directors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movies_has_directors` (
+  `movieID` int(11) NOT NULL,
+  `directorID` int(11) NOT NULL,
+  PRIMARY KEY (`movieID`,`directorID`),
+  KEY `fk_movies_has_directors_directors1_idx` (`directorID`),
+  KEY `fk_movies_has_directors_movies1_idx` (`movieID`),
+  CONSTRAINT `fk_movies_has_directors_directors1` FOREIGN KEY (`directorID`) REFERENCES `directors` (`directorID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movies_has_directors_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movies_has_directors`
+--
+
+LOCK TABLES `movies_has_directors` WRITE;
+/*!40000 ALTER TABLE `movies_has_directors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `movies_has_directors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `movies_has_genres`
+--
+
+DROP TABLE IF EXISTS `movies_has_genres`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movies_has_genres` (
+  `movieID` int(11) NOT NULL,
+  `genreID` int(11) NOT NULL,
+  PRIMARY KEY (`movieID`,`genreID`),
+  KEY `fk_movies_has_genres_genres1_idx` (`genreID`),
+  KEY `fk_movies_has_genres_movies1_idx` (`movieID`),
+  CONSTRAINT `fk_movies_has_genres_genres1` FOREIGN KEY (`genreID`) REFERENCES `genres` (`genreID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movies_has_genres_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movies_has_genres`
+--
+
+LOCK TABLES `movies_has_genres` WRITE;
+/*!40000 ALTER TABLE `movies_has_genres` DISABLE KEYS */;
+/*!40000 ALTER TABLE `movies_has_genres` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rented`
+--
+
+DROP TABLE IF EXISTS `rented`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `rented` (
+  `rentingID` int(11) NOT NULL AUTO_INCREMENT,
+  `copyID` int(11) NOT NULL,
+  `customerID` int(11) NOT NULL,
+  `employeeID` int(11) NOT NULL,
+  `rentDate` date DEFAULT NULL,
+  `dueDate` date DEFAULT NULL,
+  `comment` enum('LATE','ON TIME') COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   PRIMARY KEY (`rentingID`),
-  INDEX `fk_rented_copies1_idx` (`copyID` ASC),
-  INDEX `fk_rented_customers1_idx` (`customerID` ASC),
-  INDEX `fk_rented_employees1_idx` (`employeeID` ASC),
-  CONSTRAINT `fk_rented_copies1`
-    FOREIGN KEY (`copyID`)
-    REFERENCES `PontusL`.`copies` (`copyID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_rented_customers1`
-    FOREIGN KEY (`customerID`)
-    REFERENCES `PontusL`.`customers` (`customerID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_rented_employees1`
-    FOREIGN KEY (`employeeID`)
-    REFERENCES `PontusL`.`employees` (`employeeID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  KEY `fk_rented_copies1_idx` (`copyID`),
+  KEY `fk_rented_customers1_idx` (`customerID`),
+  KEY `fk_rented_employees1_idx` (`employeeID`),
+  CONSTRAINT `fk_rented_copies1` FOREIGN KEY (`copyID`) REFERENCES `copies` (`copyID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_rented_customers1` FOREIGN KEY (`customerID`) REFERENCES `customers` (`customerID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_rented_employees1` FOREIGN KEY (`employeeID`) REFERENCES `employees` (`employeeID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `rented`
+--
 
--- -----------------------------------------------------
--- Table `PontusL`.`genres`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`genres` (
-  `genreID` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  PRIMARY KEY (`genreID`))
-ENGINE = InnoDB;
+LOCK TABLES `rented` WRITE;
+/*!40000 ALTER TABLE `rented` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rented` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `salaries`
+--
 
--- -----------------------------------------------------
--- Table `PontusL`.`actors`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`actors` (
-  `actorID` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `brithday` DATE NULL,
-  `deathday` DATE NULL,
-  PRIMARY KEY (`actorID`))
-ENGINE = InnoDB;
+DROP TABLE IF EXISTS `salaries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `salaries` (
+  `salaryID` int(11) NOT NULL AUTO_INCREMENT,
+  `employeeID` int(11) NOT NULL,
+  `amount` double DEFAULT NULL,
+  `startDate` date DEFAULT NULL,
+  `endDate` date DEFAULT NULL,
+  PRIMARY KEY (`salaryID`),
+  KEY `fk_salaries_employees1_idx` (`employeeID`),
+  CONSTRAINT `fk_salaries_employees1` FOREIGN KEY (`employeeID`) REFERENCES `employees` (`employeeID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `salaries`
+--
 
--- -----------------------------------------------------
--- Table `PontusL`.`countries`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`countries` (
-  `countryID` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  PRIMARY KEY (`countryID`))
-ENGINE = InnoDB;
+LOCK TABLES `salaries` WRITE;
+/*!40000 ALTER TABLE `salaries` DISABLE KEYS */;
+INSERT INTO `salaries` VALUES (1,1,18500,'2017-01-01','2017-05-31'),(2,1,21000,'2017-06-01','2017-08-31'),(3,1,24900,'2017-09-01','2017-12-31'),(4,2,23300,'2017-09-01','2017-12-31'),(5,3,21800,'2017-09-01','2017-12-31'),(6,4,22900,'2017-09-01','2017-12-31'),(7,5,21900,'2017-09-01','2017-12-31'),(8,1,32000,'2018-01-01',NULL),(9,2,28900,'2018-01-01',NULL),(10,3,26300,'2018-01-01',NULL),(11,4,28900,'2018-01-01',NULL),(12,5,27200,'2018-01-01',NULL),(13,6,22100,'2018-01-01',NULL),(14,7,21800,'2018-01-01',NULL),(15,8,23500,'2018-01-01',NULL),(16,9,24100,'2018-01-01',NULL),(17,10,21900,'2018-01-01',NULL);
+/*!40000 ALTER TABLE `salaries` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Dumping events for database 'pontusl'
+--
 
--- -----------------------------------------------------
--- Table `PontusL`.`awards`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`awards` (
-  `awardID` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  PRIMARY KEY (`awardID`))
-ENGINE = InnoDB;
+--
+-- Dumping routines for database 'pontusl'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- -----------------------------------------------------
--- Table `PontusL`.`movies_has_directors`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`movies_has_directors` (
-  `movieID` INT NOT NULL,
-  `directorID` INT NOT NULL,
-  PRIMARY KEY (`movieID`, `directorID`),
-  INDEX `fk_movies_has_directors_directors1_idx` (`directorID` ASC),
-  INDEX `fk_movies_has_directors_movies1_idx` (`movieID` ASC),
-  CONSTRAINT `fk_movies_has_directors_movies1`
-    FOREIGN KEY (`movieID`)
-    REFERENCES `PontusL`.`movies` (`movieID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_movies_has_directors_directors1`
-    FOREIGN KEY (`directorID`)
-    REFERENCES `PontusL`.`directors` (`directorID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `PontusL`.`movies_has_genres`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`movies_has_genres` (
-  `movieID` INT NOT NULL,
-  `genreID` INT NOT NULL,
-  PRIMARY KEY (`movieID`, `genreID`),
-  INDEX `fk_movies_has_genres_genres1_idx` (`genreID` ASC),
-  INDEX `fk_movies_has_genres_movies1_idx` (`movieID` ASC),
-  CONSTRAINT `fk_movies_has_genres_movies1`
-    FOREIGN KEY (`movieID`)
-    REFERENCES `PontusL`.`movies` (`movieID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_movies_has_genres_genres1`
-    FOREIGN KEY (`genreID`)
-    REFERENCES `PontusL`.`genres` (`genreID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `PontusL`.`movies_has_awards`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`movies_has_awards` (
-  `movieID` INT NOT NULL,
-  `awardID` INT NOT NULL,
-  PRIMARY KEY (`movieID`, `awardID`),
-  INDEX `fk_movies_has_awards_awards1_idx` (`awardID` ASC),
-  INDEX `fk_movies_has_awards_movies1_idx` (`movieID` ASC),
-  CONSTRAINT `fk_movies_has_awards_movies1`
-    FOREIGN KEY (`movieID`)
-    REFERENCES `PontusL`.`movies` (`movieID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_movies_has_awards_awards1`
-    FOREIGN KEY (`awardID`)
-    REFERENCES `PontusL`.`awards` (`awardID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `PontusL`.`movies_has_actors`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`movies_has_actors` (
-  `movieID` INT NOT NULL,
-  `actorID` INT NOT NULL,
-  PRIMARY KEY (`movieID`, `actorID`),
-  INDEX `fk_movies_has_actors_actors1_idx` (`actorID` ASC),
-  INDEX `fk_movies_has_actors_movies1_idx` (`movieID` ASC),
-  CONSTRAINT `fk_movies_has_actors_movies1`
-    FOREIGN KEY (`movieID`)
-    REFERENCES `PontusL`.`movies` (`movieID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_movies_has_actors_actors1`
-    FOREIGN KEY (`actorID`)
-    REFERENCES `PontusL`.`actors` (`actorID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `PontusL`.`movies_has_countries`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PontusL`.`movies_has_countries` (
-  `movies_movieID` INT NOT NULL,
-  `countries_countryID` INT NOT NULL,
-  PRIMARY KEY (`movies_movieID`, `countries_countryID`),
-  INDEX `fk_movies_has_countries_countries1_idx` (`countries_countryID` ASC),
-  INDEX `fk_movies_has_countries_movies1_idx` (`movies_movieID` ASC),
-  CONSTRAINT `fk_movies_has_countries_movies1`
-    FOREIGN KEY (`movies_movieID`)
-    REFERENCES `PontusL`.`movies` (`movieID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_movies_has_countries_countries1`
-    FOREIGN KEY (`countries_countryID`)
-    REFERENCES `PontusL`.`countries` (`countryID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- Dump completed on 2018-04-02 15:30:26
