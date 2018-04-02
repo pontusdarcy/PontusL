@@ -30,7 +30,7 @@ CREATE TABLE `actors` (
   `brithday` date DEFAULT NULL,
   `deathday` date DEFAULT NULL,
   PRIMARY KEY (`actorID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `actors` (
 
 LOCK TABLES `actors` WRITE;
 /*!40000 ALTER TABLE `actors` DISABLE KEYS */;
-INSERT INTO `actors` VALUES (1,'Keanu Reeves','1964-09-02',NULL),(2,'Laurence Fishburne','1961-07-30',NULL),(3,'Carrie-Anne Moss','1967-08-21',NULL),(4,'Hugo Weaving','1960-04-04',NULL),(5,'Joe Pantoliano','1951-09-12',NULL),(6,'Tom Skerritt','1933-08-25',NULL),(7,'Sigourney Weaver','1949-10-08',NULL),(8,'Veronica Cartwright','1949-04-20',NULL),(9,'Harry Dean Stanton','1926-07-14','2017-09-15'),(10,'John Hurt','1940-01-22','2017-01-25'),(11,'Ian Holm','1931-09-12',NULL),(12,'Yaphet Kotto','1939-11-15',NULL);
+INSERT INTO `actors` VALUES (1,'Keanu Reeves','1964-09-02',NULL),(2,'Laurence Fishburne','1961-07-30',NULL),(3,'Carrie-Anne Moss','1967-08-21',NULL),(4,'Hugo Weaving','1960-04-04',NULL),(5,'Joe Pantoliano','1951-09-12',NULL),(6,'Tom Skerritt','1933-08-25',NULL),(7,'Sigourney Weaver','1949-10-08',NULL),(8,'Veronica Cartwright','1949-04-20',NULL),(9,'Harry Dean Stanton','1926-07-14','2017-09-15'),(10,'John Hurt','1940-01-22','2017-01-25'),(11,'Ian Holm','1931-09-12',NULL),(12,'Yaphet Kotto','1939-11-15',NULL),(13,'Mike Myers','1963-05-25',NULL),(14,'Eddie Murphy','1961-04-03',NULL),(15,'Cameron Diaz','1972-08-30',NULL),(16,'John Lithgow','1945-10-19',NULL),(17,'Bill Skarsgård','1990-08-09',NULL),(18,'Helen Sjöholm','1970-07-10',NULL),(19,'Jan Josef Liefers','1964-08-08',NULL),(20,'Cecilia Nilsson','1957-07-15',NULL),(21,'John Goodman','1952-06-20',NULL),(22,'Billy Crystal','1948-03-14',NULL),(23,'Steve Buscemi','1957-12-13',NULL),(24,'James Coburn','1928-08-31','2002-11-18'),(25,'Jennifer Tilly','1958-09-16',NULL),(26,'Lene Cecilia Sparrok','1997-10-06',NULL),(27,'Hanna Alström','1981-03-05',NULL),(28,'Anders Berg','1974-01-01',NULL),(29,'Audrey Tautou','1976-08-09',NULL),(30,'Mathieu Kassovitz','1967-08-03',NULL),(31,'Dev Patel','1990-04-23',NULL),(32,'Freida Pinto','1984-10-18',NULL),(33,'Madhur Mittal','1987-01-20',NULL),(34,'Anil Kapoor','1956-12-24',NULL),(35,'Irrfan Khan','1967-01-07',NULL),(36,'Nicole Kidman','1967-06-20',NULL),(37,'Fionnula Flanagan','1941-12-10',NULL),(38,'Christopher Eccleston','1964-02-16',NULL),(39,'Elaine Cassidy','1979-12-31',NULL),(40,'Eric Sykes','1923-05-04','2012-07-04'),(41,'James Bentley','1992-07-14',NULL),(42,'Alakina Mann','1990-08-01',NULL),(43,'Bryan Fogel','1972-01-01',NULL),(44,'Grigory Rodchenkov','1958-10-24',NULL);
 /*!40000 ALTER TABLE `actors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +81,7 @@ CREATE TABLE `awards` (
   `awardID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   PRIMARY KEY (`awardID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +90,7 @@ CREATE TABLE `awards` (
 
 LOCK TABLES `awards` WRITE;
 /*!40000 ALTER TABLE `awards` DISABLE KEYS */;
-INSERT INTO `awards` VALUES (1,'Oscars'),(2,'BAFTA'),(3,'Saturn'),(4,'Hugo');
+INSERT INTO `awards` VALUES (1,'Oscars'),(2,'BAFTA'),(3,'Saturn'),(4,'Hugo'),(5,'Guldbagge'),(6,'Annie'),(7,'Göteborg Film Festival'),(8,'European Film Awards'),(9,'César'),(10,'Critics\' Choice'),(11,'Golden Globes'),(12,'Goya'),(13,'Sundance Film Festival');
 /*!40000 ALTER TABLE `awards` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,7 +108,7 @@ CREATE TABLE `copies` (
   PRIMARY KEY (`copyID`),
   KEY `fk_copies_movies1_idx` (`movieID`),
   CONSTRAINT `fk_copies_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +117,7 @@ CREATE TABLE `copies` (
 
 LOCK TABLES `copies` WRITE;
 /*!40000 ALTER TABLE `copies` DISABLE KEYS */;
-INSERT INTO `copies` VALUES (1,1,'BLU-RAY'),(2,1,'BLU-RAY'),(3,1,'BLU-RAY'),(4,1,'DVD'),(5,1,'DVD'),(6,2,'BLU-RAY'),(7,2,'BLU-RAY'),(8,2,'DVD'),(9,2,'DVD');
+INSERT INTO `copies` VALUES (1,1,'BLU-RAY'),(2,1,'BLU-RAY'),(3,1,'BLU-RAY'),(4,1,'DVD'),(5,1,'DVD'),(6,2,'BLU-RAY'),(7,2,'BLU-RAY'),(8,2,'DVD'),(9,2,'DVD'),(10,3,'BLU-RAY'),(11,3,'DVD'),(12,3,'DVD'),(13,3,'DVD'),(14,3,'DVD'),(15,4,'BLU-RAY'),(16,4,'DVD'),(17,5,'BLU-RAY'),(18,5,'DVD'),(19,5,'DVD'),(20,6,'BLU-RAY'),(21,6,'BLU-RAY'),(22,6,'BLU-RAY'),(23,6,'DVD'),(24,7,'BLU-RAY'),(25,7,'DVD'),(26,7,'DVD'),(27,8,'BLU-RAY'),(28,8,'BLU-RAY'),(29,8,'DVD'),(30,8,'DVD'),(31,9,'BLU-RAY'),(32,9,'DVD'),(33,9,'DVD'),(34,10,'BLU-RAY'),(35,10,'BLU-RAY'),(36,10,'BLU-RAY'),(37,10,'DVD');
 /*!40000 ALTER TABLE `copies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +132,7 @@ CREATE TABLE `countries` (
   `countryID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   PRIMARY KEY (`countryID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +141,7 @@ CREATE TABLE `countries` (
 
 LOCK TABLES `countries` WRITE;
 /*!40000 ALTER TABLE `countries` DISABLE KEYS */;
-INSERT INTO `countries` VALUES (1,'Sweden'),(2,'United States of America'),(3,'United Kingdom');
+INSERT INTO `countries` VALUES (1,'Sweden'),(2,'United States of America'),(3,'United Kingdom'),(4,'Denmark'),(5,'Norway'),(6,'France'),(7,'Germany'),(8,'Spain'),(9,'Italy');
 /*!40000 ALTER TABLE `countries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +189,7 @@ CREATE TABLE `directors` (
   `birthday` date DEFAULT NULL,
   `deathday` date DEFAULT NULL,
   PRIMARY KEY (`directorID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -198,7 +198,7 @@ CREATE TABLE `directors` (
 
 LOCK TABLES `directors` WRITE;
 /*!40000 ALTER TABLE `directors` DISABLE KEYS */;
-INSERT INTO `directors` VALUES (1,'Lana Wachowski','1965-06-21',NULL),(2,'Lilly Wachowski','1967-12-29',NULL),(3,'Ridley Scott','1937-11-30',NULL);
+INSERT INTO `directors` VALUES (1,'Lana Wachowski','1965-06-21',NULL),(2,'Lilly Wachowski','1967-12-29',NULL),(3,'Ridley Scott','1937-11-30',NULL),(4,'Andrew Adamson','1966-12-01',NULL),(5,'Vicky Jenson','1960-01-01',NULL),(6,'Lisa Ohlin','1960-02-20',NULL),(7,'Pete Docter','1968-10-09',NULL),(8,'Amanda Kernell','1986-09-09',NULL),(9,'Jean-Pierre Jeunet','1953-09-03',NULL),(10,'Danny Boyle','1956-10-20',NULL),(11,'Alejandro Amenábar','1972-03-31',NULL),(12,'Bryan Fogel','1972-01-01',NULL);
 /*!40000 ALTER TABLE `directors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,7 +242,7 @@ CREATE TABLE `genres` (
   `genreID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   PRIMARY KEY (`genreID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,7 +251,7 @@ CREATE TABLE `genres` (
 
 LOCK TABLES `genres` WRITE;
 /*!40000 ALTER TABLE `genres` DISABLE KEYS */;
-INSERT INTO `genres` VALUES (1,'Action'),(2,'Science Fiction'),(3,'Adventure'),(4,'Fantasy'),(5,'Horror');
+INSERT INTO `genres` VALUES (1,'Action'),(2,'Science Fiction'),(3,'Adventure'),(4,'Fantasy'),(5,'Horror'),(6,'Animation'),(7,'Comedy'),(8,'Drama'),(9,'Love'),(10,'Romantic Comedy'),(11,'Crime'),(12,'Thriller'),(13,'Independent'),(14,'Mystery'),(15,'Psychological Horror'),(16,'Documentary');
 /*!40000 ALTER TABLE `genres` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +268,7 @@ CREATE TABLE `movies` (
   `length` int(11) DEFAULT NULL,
   `releaseDate` date DEFAULT NULL,
   PRIMARY KEY (`movieID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,7 +277,7 @@ CREATE TABLE `movies` (
 
 LOCK TABLES `movies` WRITE;
 /*!40000 ALTER TABLE `movies` DISABLE KEYS */;
-INSERT INTO `movies` VALUES (1,'The Matrix',136,'1999-03-31'),(2,'Alien',117,'1979-05-25');
+INSERT INTO `movies` VALUES (1,'The Matrix',136,'1999-03-31'),(2,'Alien',117,'1979-05-25'),(3,'Shrek',90,'2001-04-22'),(4,'Simon och ekarna',122,'2011-12-09'),(5,'Monsters Inc.',92,'2001-10-28'),(6,'Sameblod',110,'2016-09-08'),(7,'Amélie',123,'2001-04-25'),(8,'Slumdog Millionaire',120,'2008-08-30'),(9,'The Others',104,'2001-08-10'),(10,'Icarus',121,'2017-01-20');
 /*!40000 ALTER TABLE `movies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,7 +305,7 @@ CREATE TABLE `movies_has_actors` (
 
 LOCK TABLES `movies_has_actors` WRITE;
 /*!40000 ALTER TABLE `movies_has_actors` DISABLE KEYS */;
-INSERT INTO `movies_has_actors` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(2,6),(2,7),(2,8),(2,9),(2,10),(2,11),(2,12);
+INSERT INTO `movies_has_actors` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(2,6),(2,7),(2,8),(2,9),(2,10),(2,11),(2,12),(3,13),(3,14),(3,15),(3,16),(4,17),(4,18),(4,19),(4,20),(5,21),(5,22),(5,23),(5,24),(5,25),(6,26),(6,27),(6,28),(7,29),(7,30),(8,31),(8,32),(8,33),(8,34),(8,35),(9,36),(9,37),(9,38),(9,39),(9,40),(9,41),(9,42),(10,43),(10,44);
 /*!40000 ALTER TABLE `movies_has_actors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -333,7 +333,7 @@ CREATE TABLE `movies_has_awards` (
 
 LOCK TABLES `movies_has_awards` WRITE;
 /*!40000 ALTER TABLE `movies_has_awards` DISABLE KEYS */;
-INSERT INTO `movies_has_awards` VALUES (1,1),(2,1),(1,2),(1,3),(2,3),(2,4);
+INSERT INTO `movies_has_awards` VALUES (1,1),(2,1),(3,1),(5,1),(8,1),(10,1),(1,2),(3,2),(5,2),(7,2),(8,2),(1,3),(2,3),(9,3),(2,4),(4,5),(6,5),(5,6),(6,7),(7,8),(7,9),(8,10),(10,10),(8,11),(9,12),(10,13);
 /*!40000 ALTER TABLE `movies_has_awards` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,7 +361,7 @@ CREATE TABLE `movies_has_countries` (
 
 LOCK TABLES `movies_has_countries` WRITE;
 /*!40000 ALTER TABLE `movies_has_countries` DISABLE KEYS */;
-INSERT INTO `movies_has_countries` VALUES (1,2),(2,2),(2,3);
+INSERT INTO `movies_has_countries` VALUES (4,1),(6,1),(1,2),(2,2),(3,2),(5,2),(9,2),(10,2),(2,3),(8,3),(6,4),(6,5),(7,6),(9,6),(7,7),(9,8),(9,9);
 /*!40000 ALTER TABLE `movies_has_countries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -389,7 +389,7 @@ CREATE TABLE `movies_has_directors` (
 
 LOCK TABLES `movies_has_directors` WRITE;
 /*!40000 ALTER TABLE `movies_has_directors` DISABLE KEYS */;
-INSERT INTO `movies_has_directors` VALUES (1,1),(1,2),(2,3);
+INSERT INTO `movies_has_directors` VALUES (1,1),(1,2),(2,3),(3,4),(3,5),(4,6),(5,7),(6,8),(7,9),(8,10),(9,11),(10,12);
 /*!40000 ALTER TABLE `movies_has_directors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,7 +417,7 @@ CREATE TABLE `movies_has_genres` (
 
 LOCK TABLES `movies_has_genres` WRITE;
 /*!40000 ALTER TABLE `movies_has_genres` DISABLE KEYS */;
-INSERT INTO `movies_has_genres` VALUES (1,1),(1,2),(2,2),(1,3),(2,3),(1,4),(2,4),(2,5);
+INSERT INTO `movies_has_genres` VALUES (1,1),(1,2),(2,2),(1,3),(2,3),(3,3),(5,3),(1,4),(2,4),(3,4),(5,4),(9,4),(2,5),(9,5),(3,6),(5,6),(3,7),(5,7),(7,7),(4,8),(6,8),(8,8),(9,8),(7,9),(8,9),(7,10),(8,11),(8,12),(9,12),(10,12),(8,13),(9,14),(9,15),(10,16);
 /*!40000 ALTER TABLE `movies_has_genres` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -502,4 +502,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-02 17:05:09
+-- Dump completed on 2018-04-02 19:11:44
