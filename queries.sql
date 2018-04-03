@@ -1,6 +1,6 @@
 -- Fråga 1: Vilka filmer som firman äger, inklusive data om filmen.
 
-SELECT * FROM products;
+SELECT * FROM vw_company_owns_movies;
 
 -- Fråga 2: Vilka filmer som finns i en viss genre.
 
