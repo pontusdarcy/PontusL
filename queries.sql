@@ -4,7 +4,7 @@ SELECT * FROM vw_company_owns_movies;
 
 -- Fråga 2: Vilka filmer som finns i en viss genre.
 
-SELECT * FROM products;
+SELECT * FROM vw_movies_in_genre; -- Genre: Adventure
 
 -- Fråga : Vilka filmer som är uthyrda, vem som hyrde dem (kund) och vem som hyrde ut dem (anställd).
 
