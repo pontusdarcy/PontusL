@@ -24,7 +24,10 @@ SELECT * FROM products;
 
 -- Fråga 7: En Stored Procedure som ska köras när en film lämnas ut. Ska alltså sätta filmen till uthyrd, vem som hyrt den osv.
 
-SELECT * FROM products;
+-- För den sp jag skapat anger man en films id så hittar sp:n en ledig kopia av filmen om det finns en, annars meddelar den att det inte finns någon ledig kopia.
+CALL sp_rent_movie(1, 1, 1, 'DVD', @result); -- (movieID, customerID, employeeID, format, OUT parameter from SP: success/failure)
+
+SELECT @result; -- Show success/failure message
 
 -- Fråga 8: Gör en funktion som tar en film som parameter och returnerar olika värden beroende på om filmen är sent inlämnad eller inte. Dvs, om du matar in film nr 345 ska du få tillbaka TRUE om filmen är uthyrd men borde vara tillbakalämnad, annars FALSE. (1 och 0 funkar också om det är lättare.)
 
