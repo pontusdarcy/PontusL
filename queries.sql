@@ -6,9 +6,9 @@ SELECT * FROM vw_company_owns_movies;
 
 SELECT * FROM vw_movies_in_genre; -- Genre: Adventure
 
--- Fråga : Vilka filmer som är uthyrda, vem som hyrde dem (kund) och vem som hyrde ut dem (anställd).
+-- Fråga 3: Vilka filmer som är uthyrda, vem som hyrde dem (kund) och vem som hyrde ut dem (anställd).
 
-SELECT * FROM products;
+SELECT * FROM vw_rented_movies;
 
 -- Fråga 4: Vilka filmer som har gått över tiden, dvs filmer som inte har blivit återlämnade trots att de borde vara det, tillsammans med namnet på kunden som har hyrt den.
 
