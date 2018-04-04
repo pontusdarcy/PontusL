@@ -508,6 +508,20 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `vw_employee_rentals`
+--
+
+DROP TABLE IF EXISTS `vw_employee_rentals`;
+/*!50001 DROP VIEW IF EXISTS `vw_employee_rentals`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `vw_employee_rentals` AS SELECT 
+ 1 AS `Employee ID`,
+ 1 AS `Employee name`,
+ 1 AS `Total rentals`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary view structure for view `vw_movies_in_genre`
 --
 
@@ -584,6 +598,24 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `vw_employee_rentals`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vw_employee_rentals`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_employee_rentals` AS select `e`.`employeeID` AS `Employee ID`,concat(`e`.`firstName`,' ',`e`.`lastName`) AS `Employee name`,count(`r`.`rentingID`) AS `Total rentals` from (`employees` `e` left join `rented` `r` on((`e`.`employeeID` = `r`.`employeeID`))) group by `e`.`employeeID` order by count(`r`.`rentingID`) desc */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `vw_movies_in_genre`
 --
 
@@ -646,4 +678,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-04 15:55:10
+-- Dump completed on 2018-04-04 16:09:42
