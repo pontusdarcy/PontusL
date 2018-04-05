@@ -39,5 +39,7 @@ CALL sp_return_movie(3);
 
 -- Fråga 10: Du ska underhålla en statistiktabell med hjälp av triggers. När du lämnar ut en fil ska det göras en notering om det i din statistiktabell. Du får inte lägga till informationen från din SP ovan, det ska skötas med triggers.
 
-SELECT * FROM products;
+CALL sp_rent_movie(6, 1, 1, 'BLU-RAY', @result); -- (movieID, customerID, employeeID, format, OUT parameter from SP: success/failure)
+
+SELECT @result;
 
