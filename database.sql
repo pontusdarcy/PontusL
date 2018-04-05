@@ -859,7 +859,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vw_rented_movies` AS select `r`.`copyID` AS `Copy ID`,`m`.`title` AS `Movie title`,`co`.`format` AS `Format`,concat(`cu`.`customerID`,': ',`cu`.`firstName`,' ',`cu`.`lastName`) AS `Customer`,concat(`e`.`employeeID`,': ',`e`.`firstName`,' ',`e`.`lastName`) AS `Employee`,`r`.`rentDate` AS `Rent date`,`r`.`dueDate` AS `Due date`,`r`.`status` AS `Status` from ((((`rented` `r` left join `copies` `co` on((`r`.`copyID` = `co`.`copyID`))) left join `movies` `m` on((`co`.`movieID` = `m`.`movieID`))) left join `customers` `cu` on((`r`.`customerID` = `cu`.`customerID`))) left join `employees` `e` on((`r`.`employeeID` = `e`.`employeeID`))) where ((`r`.`rentDate` < curdate()) and isnull(`r`.`returnedDate`)) order by `r`.`rentDate` */;
+/*!50001 VIEW `vw_rented_movies` AS select `r`.`copyID` AS `Copy ID`,`m`.`title` AS `Movie title`,`co`.`format` AS `Format`,concat(`cu`.`customerID`,': ',`cu`.`firstName`,' ',`cu`.`lastName`) AS `Customer`,concat(`e`.`employeeID`,': ',`e`.`firstName`,' ',`e`.`lastName`) AS `Employee`,`r`.`rentDate` AS `Rent date`,`r`.`dueDate` AS `Due date`,`r`.`status` AS `Status` from ((((`rented` `r` left join `copies` `co` on((`r`.`copyID` = `co`.`copyID`))) left join `movies` `m` on((`co`.`movieID` = `m`.`movieID`))) left join `customers` `cu` on((`r`.`customerID` = `cu`.`customerID`))) left join `employees` `e` on((`r`.`employeeID` = `e`.`employeeID`))) where ((`r`.`rentDate` <= curdate()) and isnull(`r`.`returnedDate`)) order by `r`.`rentDate` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -873,4 +873,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-05 12:54:27
+-- Dump completed on 2018-04-05 12:59:27
