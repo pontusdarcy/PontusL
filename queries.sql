@@ -25,21 +25,30 @@ SELECT * FROM vw_months_top_movies;
 -- Fråga 7: En Stored Procedure som ska köras när en film lämnas ut. Ska alltså sätta filmen till uthyrd, vem som hyrt den osv.
 
 -- För den sp jag skapat anger man en films id så hittar sp:n en ledig kopia av filmen om det finns en, annars meddelar den att det inte finns någon ledig kopia.
-CALL sp_rent_movie(1, 1, 1, 'DVD', @result); -- (movieID, customerID, employeeID, format, OUT parameter from SP: success/failure)
+CALL sp_rent_movie(1, 1, 1, 'BLU-RAY', @result); -- (movieID, customerID, employeeID, format, OUT parameter from SP: success/failure)
 
 SELECT @result; -- Show success/failure message
 
 -- Fråga 8: Gör en funktion som tar en film som parameter och returnerar olika värden beroende på om filmen är sent inlämnad eller inte. Dvs, om du matar in film nr 345 ska du få tillbaka TRUE om filmen är uthyrd men borde vara tillbakalämnad, annars FALSE. (1 och 0 funkar också om det är lättare.)
 
-SELECT f_is_movie_late(23);
+SELECT f_is_movie_late(23); -- returns 1, is late
+
+SELECT f_is_movie_late(1); -- returns 0, is not late yet
 
 -- Fråga 9: En Stored Procedure som ska köras när en film lämnas tillbaka. Den ska använda sig av ovanstående funktion för att göra någon form av markering/utskrift om filmen är återlämnad för sent.
 
-CALL sp_return_movie(3);
+CALL sp_return_movie(3); -- (copyID)
 
 -- Fråga 10: Du ska underhålla en statistiktabell med hjälp av triggers. När du lämnar ut en fil ska det göras en notering om det i din statistiktabell. Du får inte lägga till informationen från din SP ovan, det ska skötas med triggers.
 
-CALL sp_rent_movie(6, 1, 1, 'BLU-RAY', @result); -- (movieID, customerID, employeeID, format, OUT parameter from SP: success/failure)
+-- Före uthyrning
+SELECT * FROM statistics
+ORDER BY statisticsID DESC;
 
+-- Uthyrning
+CALL sp_rent_movie(5, 1, 1, 'DVD', @result);
 SELECT @result;
 
+-- Efter uthyrning
+SELECT * FROM statistics
+ORDER BY statisticsID DESC;
