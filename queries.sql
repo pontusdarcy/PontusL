@@ -46,7 +46,7 @@ SELECT * FROM statistics
 ORDER BY statisticsID DESC;
 
 -- Uthyrning
-CALL sp_rent_movie(5, 1, 1, 'DVD', @result);
+CALL sp_rent_movie(5, 1, 1, 'DVD', @result); -- Funkar med en INSERT också eftersom det är en trigger
 SELECT @result;
 
 -- Efter uthyrning

@@ -107,7 +107,7 @@ CREATE TABLE `copies` (
   `format` enum('BLU-RAY','DVD') COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   PRIMARY KEY (`copyID`),
   KEY `fk_copies_movies1_idx` (`movieID`),
-  CONSTRAINT `fk_copies_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_copies_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -162,7 +162,7 @@ CREATE TABLE `customers` (
   `addressID` int(11) NOT NULL,
   PRIMARY KEY (`customerID`),
   KEY `fk_customers_addresses1_idx` (`addressID`),
-  CONSTRAINT `fk_customers_addresses1` FOREIGN KEY (`addressID`) REFERENCES `addresses` (`addressID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_customers_addresses1` FOREIGN KEY (`addressID`) REFERENCES `addresses` (`addressID`) ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -217,7 +217,7 @@ CREATE TABLE `employees` (
   `addressID` int(11) NOT NULL,
   PRIMARY KEY (`employeeID`),
   KEY `fk_employees_addresses1_idx` (`addressID`),
-  CONSTRAINT `fk_employees_addresses1` FOREIGN KEY (`addressID`) REFERENCES `addresses` (`addressID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_employees_addresses1` FOREIGN KEY (`addressID`) REFERENCES `addresses` (`addressID`) ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -294,8 +294,8 @@ CREATE TABLE `movies_has_actors` (
   PRIMARY KEY (`movieID`,`actorID`),
   KEY `fk_movies_has_actors_actors1_idx` (`actorID`),
   KEY `fk_movies_has_actors_movies1_idx` (`movieID`),
-  CONSTRAINT `fk_movies_has_actors_actors1` FOREIGN KEY (`actorID`) REFERENCES `actors` (`actorID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_movies_has_actors_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_movies_has_actors_actors1` FOREIGN KEY (`actorID`) REFERENCES `actors` (`actorID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movies_has_actors_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -322,8 +322,8 @@ CREATE TABLE `movies_has_awards` (
   PRIMARY KEY (`movieID`,`awardID`),
   KEY `fk_movies_has_awards_awards1_idx` (`awardID`),
   KEY `fk_movies_has_awards_movies1_idx` (`movieID`),
-  CONSTRAINT `fk_movies_has_awards_awards1` FOREIGN KEY (`awardID`) REFERENCES `awards` (`awardID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_movies_has_awards_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_movies_has_awards_awards1` FOREIGN KEY (`awardID`) REFERENCES `awards` (`awardID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movies_has_awards_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -350,8 +350,8 @@ CREATE TABLE `movies_has_countries` (
   PRIMARY KEY (`movieID`,`countryID`),
   KEY `fk_movies_has_countries_countries1_idx` (`countryID`),
   KEY `fk_movies_has_countries_movies1_idx` (`movieID`),
-  CONSTRAINT `fk_movies_has_countries_countries1` FOREIGN KEY (`countryID`) REFERENCES `countries` (`countryID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_movies_has_countries_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_movies_has_countries_countries1` FOREIGN KEY (`countryID`) REFERENCES `countries` (`countryID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movies_has_countries_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -378,8 +378,8 @@ CREATE TABLE `movies_has_directors` (
   PRIMARY KEY (`movieID`,`directorID`),
   KEY `fk_movies_has_directors_directors1_idx` (`directorID`),
   KEY `fk_movies_has_directors_movies1_idx` (`movieID`),
-  CONSTRAINT `fk_movies_has_directors_directors1` FOREIGN KEY (`directorID`) REFERENCES `directors` (`directorID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_movies_has_directors_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_movies_has_directors_directors1` FOREIGN KEY (`directorID`) REFERENCES `directors` (`directorID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movies_has_directors_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -406,8 +406,8 @@ CREATE TABLE `movies_has_genres` (
   PRIMARY KEY (`movieID`,`genreID`),
   KEY `fk_movies_has_genres_genres1_idx` (`genreID`),
   KEY `fk_movies_has_genres_movies1_idx` (`movieID`),
-  CONSTRAINT `fk_movies_has_genres_genres1` FOREIGN KEY (`genreID`) REFERENCES `genres` (`genreID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_movies_has_genres_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_movies_has_genres_genres1` FOREIGN KEY (`genreID`) REFERENCES `genres` (`genreID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movies_has_genres_movies1` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -873,4 +873,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-06 14:44:32
+-- Dump completed on 2018-04-06 15:40:21
